@@ -19,11 +19,14 @@ export default function ImageConverter() {
     };
     const [originalFileSize, setOriginalFileSize] = useState(0);
     const [convertedFileSize, setConvertedFileSize] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const handleConvert = () => {
+        setLoading(true);
         setConvertedImage(null);
         if (!originalImage) {
             console.warn("no image uploaded");
+            setLoading(false);
             return;
         }
 
@@ -52,6 +55,11 @@ export default function ImageConverter() {
 
             setConvertedImage(convertedImageUrl);
             setConvertedFileSize(convertedFileSize);
+            setLoading(false);
+        };
+        imgElement.onerror = () => {
+            setLoading(false);
+            console.error("Image loading failed");
         };
         imgElement.src = originalImage; // onload event will be triggered after the image is loaded
     };
@@ -185,9 +193,17 @@ export default function ImageConverter() {
                     </select>
                     <button
                         onClick={handleConvert}
+                        disabled={loading}
                         className="p-2 w-32 hover-button shadow-md rounded-md text-white font-bold"
                     >
-                        Convert
+                        {loading ? (
+                            <div className="flex items-center justify-center gap-1">
+                                <div className="w-2 h-2 p-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                Converting...
+                            </div>
+                        ) : (
+                            "Convert"
+                        )}
                     </button>
                 </div>
 
