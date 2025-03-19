@@ -13,10 +13,10 @@ export default function ImageConverter() {
         height: 1024,
     });
     const [targetScale, setTargetScale] = useState(1);
-    const targetSize = {
-        width: parseInt(originalSize.width * targetScale),
-        height: parseInt(originalSize.height * targetScale),
-    };
+    const [targetSize, setTargetSize] = useState({
+        width: 1024,
+        height: 1024,
+    });
     const [originalFileSize, setOriginalFileSize] = useState(0);
     const [convertedFileSize, setConvertedFileSize] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -32,21 +32,17 @@ export default function ImageConverter() {
 
         // create a temporary image object to load the original image
         const imgElement = new Image();
+        const targetWidth = parseInt(originalSize.width * targetScale);
+        const targetHeight = parseInt(originalSize.height * targetScale);
         // onload event
         imgElement.onload = () => {
             const canvas = document.createElement("canvas");
             // set canvas size to the target size
-            canvas.width = targetSize.width;
-            canvas.height = targetSize.height;
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
             const ctx = canvas.getContext("2d");
             // resize the image to the target size and draw it on the canvas
-            ctx.drawImage(
-                imgElement,
-                0,
-                0,
-                targetSize.width,
-                targetSize.height
-            );
+            ctx.drawImage(imgElement, 0, 0, targetWidth, targetHeight);
 
             let mimeType = `image/${format}`;
             const convertedImageUrl = canvas.toDataURL(mimeType, quality);
@@ -54,6 +50,10 @@ export default function ImageConverter() {
                 (convertedImageUrl.split(",")[1].length * 3) / 4;
 
             setConvertedImage(convertedImageUrl);
+            setTargetSize({
+                width: targetWidth,
+                height: targetHeight,
+            });
             setConvertedFileSize(convertedFileSize);
             setLoading(false);
         };
@@ -142,27 +142,6 @@ export default function ImageConverter() {
                         <option value="jpeg">JPEG</option>
                         <option value="webp">WEBP</option>
                     </select>
-                    <div className="w-32 pl-2 flex items-center justify-between">
-                        <span>Quality</span>
-                        <select
-                            value={quality}
-                            onChange={(e) => {
-                                setQuality(parseFloat(e.target.value));
-                            }}
-                            className="p-2 bg-background border hover-border rounded-md"
-                        >
-                            <option value={1}>1</option>
-                            <option value={0.9}>0.9</option>
-                            <option value={0.8}>0.8</option>
-                            <option value={0.7}>0.7</option>
-                            <option value={0.6}>0.6</option>
-                            <option value={0.5}>0.5</option>
-                            <option value={0.4}>0.4</option>
-                            <option value={0.3}>0.3</option>
-                            <option value={0.2}>0.2</option>
-                            <option value={0.1}>0.1</option>
-                        </select>
-                    </div>
                     <select
                         value={targetScale}
                         onChange={(e) => {
@@ -191,6 +170,27 @@ export default function ImageConverter() {
                             {parseInt(originalSize.height * 0.1)}
                         </option>
                     </select>
+                    <div className="w-32 pl-2 flex items-center justify-between">
+                        <span>Quality</span>
+                        <select
+                            value={quality}
+                            onChange={(e) => {
+                                setQuality(parseFloat(e.target.value));
+                            }}
+                            className="p-2 bg-background border hover-border rounded-md"
+                        >
+                            <option value={1}>1</option>
+                            <option value={0.9}>0.9</option>
+                            <option value={0.8}>0.8</option>
+                            <option value={0.7}>0.7</option>
+                            <option value={0.6}>0.6</option>
+                            <option value={0.5}>0.5</option>
+                            <option value={0.4}>0.4</option>
+                            <option value={0.3}>0.3</option>
+                            <option value={0.2}>0.2</option>
+                            <option value={0.1}>0.1</option>
+                        </select>
+                    </div>
                     <button
                         onClick={handleConvert}
                         disabled={loading}
