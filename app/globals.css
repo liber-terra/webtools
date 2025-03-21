@@ -1,22 +1,81 @@
 @import "tailwindcss";
 
 :root {
-    --background: #ffffff; /* 白色背景 */
-    --foreground: #171717; /* 黑色文字 */
-    --primary: #3b82f6; /* 蓝色主色调 */
-    --secondary: #8b5cf6; /* 紫色次色调 */
-    --accent: #dc2626; /* 红色用于警告或者强调 */
-    --border: #d1d5dbcc; /* grey-300用于边框（80%透明度） */
+    /* 基础底色 */
+    --background: #ffffff; /* 页面背景色 */
+    --foreground: #171717; /* 主文字颜色 */
+
+    /* 主色（用于按钮、链接、强调） */
+    --primary: #2563eb; /* 主按钮 / 主操作色（蓝） */
+    --primary-foreground: #ffffff; /* 主按钮上的文字色 */
+
+    /* 次色（次要按钮 / 信息块） */
+    --secondary: #f3f4f6; /* 次要背景色（灰白） */
+    --secondary-foreground: #111827; /* 次色区域文字 */
+
+    /* 点缀色（小标签 / 图标 / icon 按钮） */
+    --accent: #d946ef; /* 点缀强调色（紫 / 粉） */
+    --accent-foreground: #ffffff; /* 点缀区域上的文字 */
+
+    /* 边框色（输入框 / 卡片） */
+    --border: #e5e7eb; /* 默认边框色（浅灰） */
+
+    /* 悬浮色（hover 背景） */
+    --muted: #f9fafb; /* 背景弱化区域（例如顶部 bar 背景） */
+    --muted-foreground: #6b7280; /* 灰色说明文字、注释、时间戳等 */
+
+    /* 危险操作（删除 / 错误） */
+    --destructive: #dc2626; /* 删除按钮背景色（红） */
+    --destructive-foreground: #ffffff; /* 删除按钮文字色 */
+
+    /* 成功状态（成功提示 / badge） */
+    --success: #22c55e; /* 成功状态色（绿） */
+    --success-foreground: #ffffff; /* 成功区域文字 */
+
+    /* 提示状态（通知 / 提醒） */
+    --info: #0ea5e9; /* 提示状态（蓝青） */
+    --info-foreground: #ffffff;
+
+    /* 警告状态（警告文字 / 提醒） */
+    --warning: #facc15; /* 警告状态（黄） */
+    --warning-foreground: #000000;
+
+    /* 输入焦点、ring 外圈 */
+    --ring: #3b82f6; /* focus ring 颜色 */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
+        --background: #0b0b0f;
+        --foreground: #f4f4f5;
+
         --primary: #3b82f6;
-        --secondary: #8b5cf6;
-        --accent: #dc2626;
-        --border: #d1d5dbcc;
+        --primary-foreground: #ffffff;
+
+        --secondary: #1f2937;
+        --secondary-foreground: #e5e7eb;
+
+        --accent: #c084fc;
+        --accent-foreground: #1f1f1f;
+
+        --border: #374151;
+
+        --muted: #1e1e24;
+        --muted-foreground: #9ca3af;
+
+        --destructive: #ef4444;
+        --destructive-foreground: #ffffff;
+
+        --success: #22c55e;
+        --success-foreground: #ffffff;
+
+        --info: #0ea5e9;
+        --info-foreground: #ffffff;
+
+        --warning: #facc15;
+        --warning-foreground: #000000;
+
+        --ring: #60a5fa;
     }
 }
 
@@ -26,12 +85,21 @@
     --color-foreground: var(--foreground);
     --color-primary: var(--primary);
     --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
     --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
     --color-border: var(--border);
-
-    /* Fonts */
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+    --color-info: var(--info);
+    --color-info-foreground: var(--info-foreground);
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+    --color-ring: var(--ring);
 }
 
 .hover-border {
@@ -53,5 +121,4 @@
 body {
     background: var(--background);
     color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
 }

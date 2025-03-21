@@ -94,7 +94,7 @@ export default function ImageConverter() {
     };
 
     return (
-        <div className="min-h-screen grid grid-rows-[auto_1fr_auto] items-center justify-items-center py-10 md:py-40 gap-20">
+        <div className="flex-grow grid grid-rows-[auto_1fr_auto] items-center justify-items-center py-10 md:py-40 gap-20">
             <h1 className="row-start-1 text-4xl font-bold">Image Converter</h1>
             <main className="row-start-2 w-full max-w-screen-lg flex flex-col md:flex-row items-center justify-between gap-10">
                 {/* upload & preview */}
