@@ -1,6 +1,17 @@
 "use client";
 import { useState } from "react";
 import Img from "next/image";
+import { Button } from "@/components/ui/button";
+import { LoaderCircle } from "lucide-react";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 // img converter page
 export default function ImageConverter() {
@@ -132,79 +143,75 @@ export default function ImageConverter() {
                 </label>
 
                 {/* selections & convert */}
-                <div className="flex flex-col items-center justify-center gap-4">
-                    <select
-                        value={format}
-                        onChange={(e) => setFormat(e.target.value)}
-                        className="w-32 p-2 bg-background border hover-border rounded-md"
-                    >
-                        <option value="png">PNG</option>
-                        <option value="jpeg">JPEG</option>
-                        <option value="webp">WEBP</option>
-                    </select>
-                    <select
-                        value={targetScale}
-                        onChange={(e) => {
-                            setTargetScale(e.target.value);
-                        }}
-                        className="p-2 w-32 bg-background border hover-border rounded-md"
-                    >
-                        <option value={1}>
-                            {parseInt(originalSize.width)}x
-                            {parseInt(originalSize.height)}
-                        </option>
-                        <option value={0.5}>
-                            {parseInt(originalSize.width * 0.5)}x
-                            {parseInt(originalSize.height * 0.5)}
-                        </option>
-                        <option value={0.3}>
-                            {parseInt(originalSize.width * 0.3)}x
-                            {parseInt(originalSize.height * 0.3)}
-                        </option>
-                        <option value={0.2}>
-                            {parseInt(originalSize.width * 0.2)}x
-                            {parseInt(originalSize.height * 0.2)}
-                        </option>
-                        <option value={0.1}>
-                            {parseInt(originalSize.width * 0.1)}x
-                            {parseInt(originalSize.height * 0.1)}
-                        </option>
-                    </select>
-                    <div className="w-32 pl-2 flex items-center justify-between">
-                        <span>Quality</span>
-                        <select
-                            value={quality}
-                            onChange={(e) => {
-                                setQuality(parseFloat(e.target.value));
-                            }}
-                            className="p-2 bg-background border hover-border rounded-md"
-                        >
-                            <option value={1}>1</option>
-                            <option value={0.9}>0.9</option>
-                            <option value={0.8}>0.8</option>
-                            <option value={0.7}>0.7</option>
-                            <option value={0.6}>0.6</option>
-                            <option value={0.5}>0.5</option>
-                            <option value={0.4}>0.4</option>
-                            <option value={0.3}>0.3</option>
-                            <option value={0.2}>0.2</option>
-                            <option value={0.1}>0.1</option>
-                        </select>
-                    </div>
-                    <button
+                <div className="flex-center flex-col gap-4">
+                    <Select onValueChange={(value) => setFormat(value)}>
+                        <SelectTrigger className="w-38">
+                            <SelectValue placeholder="Select a format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="png">PNG</SelectItem>
+                            <SelectItem value="jpeg">JPEG</SelectItem>
+                            <SelectItem value="webp">WEBP</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Select onValueChange={(value) => setTargetScale(value)}>
+                        <SelectTrigger className="w-38">
+                            <SelectValue placeholder="Select a scale" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={1}>
+                                {parseInt(originalSize.width)}x
+                                {parseInt(originalSize.height)}
+                            </SelectItem>
+                            <SelectItem value={0.5}>
+                                {parseInt(originalSize.width * 0.5)}x
+                                {parseInt(originalSize.height * 0.5)}
+                            </SelectItem>
+                            <SelectItem value={0.3}>
+                                {parseInt(originalSize.width * 0.3)}x
+                                {parseInt(originalSize.height * 0.3)}
+                            </SelectItem>
+                            <SelectItem value={0.2}>
+                                {parseInt(originalSize.width * 0.2)}x
+                                {parseInt(originalSize.height * 0.2)}
+                            </SelectItem>
+                            <SelectItem value={0.1}>
+                                {parseInt(originalSize.width * 0.1)}x
+                                {parseInt(originalSize.height * 0.1)}
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Select onValueChange={(value) => setQuality(value)}>
+                        <SelectTrigger className="w-38">
+                            <SelectValue placeholder="Select a quality" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={1}>1</SelectItem>
+                            <SelectItem value={0.9}>0.9</SelectItem>
+                            <SelectItem value={0.8}>0.8</SelectItem>
+                            <SelectItem value={0.7}>0.7</SelectItem>
+                            <SelectItem value={0.6}>0.6</SelectItem>
+                            <SelectItem value={0.5}>0.5</SelectItem>
+                            <SelectItem value={0.4}>0.4</SelectItem>
+                            <SelectItem value={0.3}>0.3</SelectItem>
+                            <SelectItem value={0.2}>0.2</SelectItem>
+                            <SelectItem value={0.1}>0.1</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Button
                         onClick={handleConvert}
                         disabled={loading}
-                        className="p-2 w-32 hover-button shadow-md rounded-md text-white font-bold"
+                        className="w-38"
                     >
                         {loading ? (
-                            <div className="flex items-center justify-center gap-1">
-                                <div className="w-2 h-2 p-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <div className="flex-center gap-1">
+                                <LoaderCircle className="animate-spin" />
                                 Converting...
                             </div>
                         ) : (
                             "Convert"
                         )}
-                    </button>
+                    </Button>
                 </div>
 
                 {/* download & preview */}

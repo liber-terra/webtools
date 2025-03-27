@@ -1,105 +1,222 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
 
 :root {
-    /* 基础底色 */
-    --background: #ffffff; /* 页面背景色 */
-    --foreground: #171717; /* 主文字颜色 */
+    --radius: 0.625rem;
 
-    /* 主色（用于按钮、链接、强调） */
-    --primary: #2563eb; /* 主按钮 / 主操作色（蓝） */
-    --primary-foreground: #ffffff; /* 主按钮上的文字色 */
+    --background: oklch(1 0 0);
 
-    /* 次色（次要按钮 / 信息块） */
-    --secondary: #f3f4f6; /* 次要背景色（灰白） */
-    --secondary-foreground: #111827; /* 次色区域文字 */
+    --foreground: oklch(0.129 0.042 264.695);
 
-    /* 点缀色（小标签 / 图标 / icon 按钮） */
-    --accent: #d946ef; /* 点缀强调色（紫 / 粉） */
-    --accent-foreground: #ffffff; /* 点缀区域上的文字 */
+    --card: oklch(1 0 0);
 
-    /* 边框色（输入框 / 卡片） */
-    --border: #e5e7eb; /* 默认边框色（浅灰） */
+    --card-foreground: oklch(0.129 0.042 264.695);
 
-    /* 悬浮色（hover 背景） */
-    --muted: #f9fafb; /* 背景弱化区域（例如顶部 bar 背景） */
-    --muted-foreground: #6b7280; /* 灰色说明文字、注释、时间戳等 */
+    --popover: oklch(1 0 0);
 
-    /* 危险操作（删除 / 错误） */
-    --destructive: #dc2626; /* 删除按钮背景色（红） */
-    --destructive-foreground: #ffffff; /* 删除按钮文字色 */
+    --popover-foreground: oklch(0.129 0.042 264.695);
 
-    /* 成功状态（成功提示 / badge） */
-    --success: #22c55e; /* 成功状态色（绿） */
-    --success-foreground: #ffffff; /* 成功区域文字 */
+    --primary: oklch(0.208 0.042 265.755);
 
-    /* 提示状态（通知 / 提醒） */
-    --info: #0ea5e9; /* 提示状态（蓝青） */
-    --info-foreground: #ffffff;
+    --primary-foreground: oklch(0.984 0.003 247.858);
 
-    /* 警告状态（警告文字 / 提醒） */
-    --warning: #facc15; /* 警告状态（黄） */
-    --warning-foreground: #000000;
+    --secondary: oklch(0.968 0.007 247.896);
 
-    /* 输入焦点、ring 外圈 */
-    --ring: #3b82f6; /* focus ring 颜色 */
+    --secondary-foreground: oklch(0.208 0.042 265.755);
+
+    --muted: oklch(0.968 0.007 247.896);
+
+    --muted-foreground: oklch(0.554 0.046 257.417);
+
+    --accent: oklch(0.968 0.007 247.896);
+
+    --accent-foreground: oklch(0.208 0.042 265.755);
+
+    --destructive: oklch(0.577 0.245 27.325);
+
+    --border: oklch(0.929 0.013 255.508);
+
+    --input: oklch(0.929 0.013 255.508);
+
+    --ring: oklch(0.704 0.04 256.788);
+
+    --chart-1: oklch(0.646 0.222 41.116);
+
+    --chart-2: oklch(0.6 0.118 184.704);
+
+    --chart-3: oklch(0.398 0.07 227.392);
+
+    --chart-4: oklch(0.828 0.189 84.429);
+
+    --chart-5: oklch(0.769 0.188 70.08);
+
+    --sidebar: oklch(0.984 0.003 247.858);
+
+    --sidebar-foreground: oklch(0.129 0.042 264.695);
+
+    --sidebar-primary: oklch(0.208 0.042 265.755);
+
+    --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+
+    --sidebar-accent: oklch(0.968 0.007 247.896);
+
+    --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+
+    --sidebar-border: oklch(0.929 0.013 255.508);
+
+    --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0b0b0f;
-        --foreground: #f4f4f5;
+.dark {
+    --background: oklch(0.129 0.042 264.695);
 
-        --primary: #3b82f6;
-        --primary-foreground: #ffffff;
+    --foreground: oklch(0.984 0.003 247.858);
 
-        --secondary: #1f2937;
-        --secondary-foreground: #e5e7eb;
+    --card: oklch(0.208 0.042 265.755);
 
-        --accent: #c084fc;
-        --accent-foreground: #1f1f1f;
+    --card-foreground: oklch(0.984 0.003 247.858);
 
-        --border: #374151;
+    --popover: oklch(0.208 0.042 265.755);
 
-        --muted: #1e1e24;
-        --muted-foreground: #9ca3af;
+    --popover-foreground: oklch(0.984 0.003 247.858);
 
-        --destructive: #ef4444;
-        --destructive-foreground: #ffffff;
+    --primary: oklch(0.929 0.013 255.508);
 
-        --success: #22c55e;
-        --success-foreground: #ffffff;
+    --primary-foreground: oklch(0.208 0.042 265.755);
 
-        --info: #0ea5e9;
-        --info-foreground: #ffffff;
+    --secondary: oklch(0.279 0.041 260.031);
 
-        --warning: #facc15;
-        --warning-foreground: #000000;
+    --secondary-foreground: oklch(0.984 0.003 247.858);
 
-        --ring: #60a5fa;
-    }
+    --muted: oklch(0.279 0.041 260.031);
+
+    --muted-foreground: oklch(0.704 0.04 256.788);
+
+    --accent: oklch(0.279 0.041 260.031);
+
+    --accent-foreground: oklch(0.984 0.003 247.858);
+
+    --destructive: oklch(0.704 0.191 22.216);
+
+    --border: oklch(1 0 0 / 10%);
+
+    --input: oklch(1 0 0 / 15%);
+
+    --ring: oklch(0.551 0.027 264.364);
+
+    --chart-1: oklch(0.488 0.243 264.376);
+
+    --chart-2: oklch(0.696 0.17 162.48);
+
+    --chart-3: oklch(0.769 0.188 70.08);
+
+    --chart-4: oklch(0.627 0.265 303.9);
+
+    --chart-5: oklch(0.645 0.246 16.439);
+
+    --sidebar: oklch(0.208 0.042 265.755);
+
+    --sidebar-foreground: oklch(0.984 0.003 247.858);
+
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+
+    --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+
+    --sidebar-accent: oklch(0.279 0.041 260.031);
+
+    --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+
+    --sidebar-border: oklch(1 0 0 / 10%);
+
+    --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
 @theme inline {
-    /* Colors */
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --radius-md: calc(var(--radius) - 2px);
+
+    --radius-lg: var(--radius);
+
+    --radius-xl: calc(var(--radius) + 4px);
+
     --color-background: var(--background);
+
     --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+
+    --color-popover-foreground: var(--popover-foreground);
+
     --color-primary: var(--primary);
+
+    --color-primary-foreground: var(--primary-foreground);
+
     --color-secondary: var(--secondary);
+
     --color-secondary-foreground: var(--secondary-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-border: var(--border);
+
     --color-muted: var(--muted);
+
     --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+
+    --color-accent-foreground: var(--accent-foreground);
+
     --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-    --color-success: var(--success);
-    --color-success-foreground: var(--success-foreground);
-    --color-info: var(--info);
-    --color-info-foreground: var(--info-foreground);
-    --color-warning: var(--warning);
-    --color-warning-foreground: var(--warning-foreground);
+
+    --color-border: var(--border);
+
+    --color-input: var(--input);
+
     --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+
+    --color-chart-2: var(--chart-2);
+
+    --color-chart-3: var(--chart-3);
+
+    --color-chart-4: var(--chart-4);
+
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+
+    --color-sidebar-foreground: var(--sidebar-foreground);
+
+    --color-sidebar-primary: var(--sidebar-primary);
+
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+    --color-sidebar-accent: var(--sidebar-accent);
+
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+    --color-sidebar-border: var(--sidebar-border);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@utility flex-center {
+    @apply flex items-center justify-center;
 }
 
 .hover-border {
@@ -116,9 +233,4 @@
 
 .hover-bright {
     @apply group-hover:opacity-100 transition-opacity duration-300 ease-in-out;
-}
-
-body {
-    background: var(--background);
-    color: var(--foreground);
 }
