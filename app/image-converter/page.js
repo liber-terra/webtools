@@ -6,12 +6,11 @@ import { LoaderCircle } from "lucide-react";
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import ImageUploader from "@/app/components/ImageUploader";
 
 // img converter page
 export default function ImageConverter() {
@@ -75,7 +74,7 @@ export default function ImageConverter() {
         imgElement.src = originalImage; // onload event will be triggered after the image is loaded
     };
 
-    const handleImageChange = (event) => {
+    const handleImageUpload = (event) => {
         const file = event.target.files?.[0];
         if (file) {
             const imageUrl = URL.createObjectURL(file);
@@ -109,39 +108,12 @@ export default function ImageConverter() {
             <h1 className="row-start-1 text-4xl font-bold">Image Converter</h1>
             <main className="row-start-2 w-full max-w-screen-lg flex flex-col md:flex-row items-center justify-between gap-10">
                 {/* upload & preview */}
-                <label className="relative group w-64 h-64 flex items-center justify-center cursor-pointer border-3 hover-border border-dashed rounded-lg ">
-                    <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleImageChange}
-                    />
-                    {originalImage ? (
-                        <>
-                            <Img
-                                src={originalImage}
-                                alt="uploaded image preview"
-                                fill
-                                className="object-contain hover-dim"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover-bright">
-                                <p className="text-gray-600 text-2xl">
-                                    Click to Upload
-                                </p>
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-center py-1">
-                                Original: {originalSize.width}x
-                                {originalSize.height} |{" "}
-                                {formatFileSize(originalFileSize)}
-                            </div>
-                        </>
-                    ) : (
-                        <p className="text-gray-600 text-2xl">
-                            Click to Upload
-                        </p>
-                    )}
-                </label>
-
+                <ImageUploader
+                    originalImage={originalImage}
+                    handleImageUpload={handleImageUpload}
+                    originalSize={originalSize}
+                    originalFileSize={originalFileSize}
+                />
                 {/* selections & convert */}
                 <div className="flex-center flex-col gap-4">
                     <Select onValueChange={(value) => setFormat(value)}>
