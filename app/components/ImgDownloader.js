@@ -17,13 +17,14 @@ export default function ImgDownloader({
             <p className="text-muted-foreground text-2xl">Click to Download</p>
             {imgURL && (
                 <>
-                    <a href={imgURL} download className="absolute inset-0"></a>
-                    <ImgPreview
-                        imgURL={imgURL}
-                        imgSize={imgSize}
-                        imgFileSize={imgFileSize}
-                        className="hover:opacity-20 transition"
-                    />
+                    <a href={imgURL} download className="absolute inset-0">
+                        <ImgPreview
+                            imgURL={imgURL}
+                            imgSize={imgSize}
+                            imgFileSize={imgFileSize}
+                            className="hover:opacity-20 transition"
+                        />
+                    </a>
                 </>
             )}
         </div>
