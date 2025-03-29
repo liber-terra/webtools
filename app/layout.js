@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,7 +13,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
-                <Script
+                <script
                     async
                     strategy="afterInteractive"
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6790184075172298"
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
             </head>
 
             <body
-                className={`${inter.className} antialiased min-h-screen flex flex-col`}
+                className={`${inter.className} antialiased min-h-screen grid grid-rows-[auto_1fr]`}
             >
                 <Navbar />
                 {children}
