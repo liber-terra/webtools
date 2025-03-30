@@ -10,22 +10,28 @@ export default function ImgDownloader({
     return (
         <div
             className={cn(
-                "relative size-64 flex-center cursor-pointer border-3 border-muted hover:border-muted-foreground transition border-dashed rounded-lg",
+                "relative group size-64 flex-center cursor-pointer border-3 border-muted hover:border-muted-foreground transition border-dashed rounded-lg",
                 className
             )}
         >
-            <p className="text-muted-foreground text-2xl">Click to Download</p>
-            {imgURL && (
+            {imgURL ? (
                 <>
                     <a href={imgURL} download className="absolute inset-0">
                         <ImgPreview
                             imgURL={imgURL}
                             imgSize={imgSize}
                             imgFileSize={imgFileSize}
-                            className="hover:opacity-20 transition"
+                            className="group-hover:opacity-20 transition"
                         />
                     </a>
+                    <p className="text-muted-foreground text-2xl hidden group-hover:block">
+                        Click to Download
+                    </p>
                 </>
+            ) : (
+                <p className="text-muted-foreground text-2xl">
+                    Click to Download
+                </p>
             )}
         </div>
     );
