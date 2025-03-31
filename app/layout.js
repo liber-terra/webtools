@@ -1,5 +1,5 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,10 +15,9 @@ export default function RootLayout({ children }) {
             <head>
                 <script
                     async
-                    strategy="afterInteractive"
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6790184075172298"
                     crossorigin="anonymous"
-                />
+                ></script>
             </head>
 
             <body
