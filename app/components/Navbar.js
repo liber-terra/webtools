@@ -4,7 +4,7 @@ import ThemeToggle from "./ui/ThemeToggle";
 export default function Navbar() {
     return (
         // wrapper
-        <nav className="sticky top-0 z-50 border-border border-b">
+        <nav className="sticky top-0 z-50 border-border border-b bg-background">
             <div className="max-w-screen-2xl mx-auto h-14 px-4 sm:px-8 lg:px-12 flex-between">
                 {/* left side */}
                 <div>
