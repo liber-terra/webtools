@@ -11,7 +11,7 @@ export default function Navbar() {
                 <div>
                     <Link
                         href="/"
-                        className="text-2xl font-bold text-muted-foreground hover:brightness-125"
+                        className="flex-center gap-2 text-2xl font-bold text-muted-foreground hover:brightness-125 transition-all"
                         aria-label="Go to the homepage"
                     >
                         <Image
@@ -19,7 +19,9 @@ export default function Navbar() {
                             alt="logo"
                             width={32}
                             height={32}
+                            className="rounded-lg"
                         />
+                        <span className="hidden sm:inline">Tools Hub</span>
                     </Link>
                 </div>
                 {/* Right side */}
