@@ -3,7 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 :root {
     --radius: 0.625rem;
 
@@ -225,4 +224,21 @@
 
 @utility flex-around {
     @apply flex items-center justify-around;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@utility animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 6s ease infinite;
 }

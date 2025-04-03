@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             </head>
 
             <body
-                className={`${inter.className} antialiased min-h-screen grid grid-rows-[auto_1fr]`}
+                className={`${inter.className} antialiased min-h-screen flex flex-col`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -30,8 +30,11 @@ export default function RootLayout({ children }) {
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <Navbar />
-                    {children}
+                    <div className="h-14">
+                        <Navbar />
+                    </div>
+
+                    <div className="flex-1">{children}</div>
                 </ThemeProvider>
             </body>
         </html>
