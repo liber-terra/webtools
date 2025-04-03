@@ -9,8 +9,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import ImgUploader from "@/app/components/ImgUploader";
-import ImgDownloader from "@/app/components/ImgDownloader";
+import ImgUploader from "@/app/components/img-uploader";
+import ImgDownloader from "@/app/components/img-downloader";
 import { cn } from "@/lib/utils";
 
 export default function ImageConverterMain({ className }) {

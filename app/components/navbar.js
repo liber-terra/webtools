@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import ThemeToggle from "./ui/ThemeToggle";
+import ThemeToggle from "./ui/theme-toggle";
 
 export default function Navbar() {
     return (
@@ -24,6 +24,7 @@ export default function Navbar() {
                         <span className="hidden sm:inline">Tools Hub</span>
                     </Link>
                 </div>
+                {/* TODO: Menu */}
                 {/* Right side */}
                 <div className="flex gap-2">
                     {/* TODO: Language Toggle */}

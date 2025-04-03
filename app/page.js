@@ -1,6 +1,6 @@
-import PageWrapper from "./components/PageWrapper";
-import NavCard from "./components/NavCard";
-import { TOOLS } from "./data/Tools";
+import PageWrapper from "./components/page-wrapper";
+import NavCard from "./components/nav-card";
+import { TOOLS } from "./data/TOOLS";
 
 export default function Home() {
     return (

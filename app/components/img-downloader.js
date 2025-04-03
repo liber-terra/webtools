@@ -1,44 +1,38 @@
 import { cn } from "@/lib/utils";
-import ImgPreview from "./ui/ImgPreview";
+import ImgPreview from "./ui/img-preview";
 
-export default function ImgUploader({
+export default function ImgDownloader({
     imgURL,
-    onImgUpload,
     imgSize = null,
     imgFileSize = null,
     className = "",
 }) {
     return (
-        <label
+        <div
             className={cn(
                 "relative group size-64 flex-center cursor-pointer border-3 border-muted hover:border-muted-foreground transition border-dashed rounded-lg",
                 className
             )}
         >
-            <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={onImgUpload}
-            />
-
             {imgURL ? (
                 <>
-                    <ImgPreview
-                        imgURL={imgURL}
-                        imgSize={imgSize}
-                        imgFileSize={imgFileSize}
-                        className="group-hover:opacity-20 transition"
-                    />
+                    <a href={imgURL} download className="absolute inset-0">
+                        <ImgPreview
+                            imgURL={imgURL}
+                            imgSize={imgSize}
+                            imgFileSize={imgFileSize}
+                            className="group-hover:opacity-20 transition"
+                        />
+                    </a>
                     <p className="text-muted-foreground text-2xl hidden group-hover:block">
-                        Click to Upload
+                        Click to Download
                     </p>
                 </>
             ) : (
                 <p className="text-muted-foreground text-2xl">
-                    Click to Upload
+                    Click to Download
                 </p>
             )}
-        </label>
+        </div>
     );
 }

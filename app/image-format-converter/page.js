@@ -1,5 +1,5 @@
-import PageWrapper from "../components/PageWrapper";
-import ImageConverterMain from "./ImageConverterMain";
+import PageWrapper from "../components/page-wrapper";
+import ImageConverterMain from "./image-converter-main";
 
 export const metadata = {
     title: "Image Format Converter - Free Online Tool",
