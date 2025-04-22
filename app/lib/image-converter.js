@@ -3,15 +3,19 @@
 import sharp from "sharp";
 
 export async function convertImg(imageArray, format, quality, scale) {
-    console.log("format: ", format);
-    console.log("quality: ", quality);
-    console.log("scale: ", scale);
+    console.log("format: ", format, typeof format);
+    console.log("quality: ", quality, typeof quality);
+    console.log("scale: ", scale, typeof scale);
 
     const metadata = await sharp(imageArray).metadata();
-    console.log("metadata: ", metadata);
+    const width = Math.round(metadata.width * scale);
 
-    const image = sharp(imageArray).toFormat(format);
-    const imageBuffer = await image.toBuffer();
+    const imageBuffer = await sharp(imageArray)
+        .toFormat(format, { quality: quality })
+        .resize({ width: width })
+        .toBuffer();
 
+    // console.log("before meta: ", metadata);
+    // console.log("after meta:", await sharp(imageBuffer).metadata());
     return imageBuffer;
 }

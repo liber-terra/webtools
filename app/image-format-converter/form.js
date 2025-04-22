@@ -30,20 +30,28 @@ export default function Form({ handleSubmit, loading }) {
             </FormItem>
 
             <FormItem label="Target format:">
-                <Select name="format" defaultValue="png">
+                <Select name="format" defaultValue="jpeg">
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a format" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="png">PNG</SelectItem>
                         <SelectItem value="jpeg">JPEG</SelectItem>
+                        <SelectItem value="png">PNG</SelectItem>
                         <SelectItem value="webp">WEBP</SelectItem>
+                        <SelectItem value="gif">GIF</SelectItem>
+                        {/* <SelectItem value="jp2">JP2</SelectItem> */}
+                        <SelectItem value="tiff">TIFF</SelectItem>
+                        <SelectItem value="avif">AVIF</SelectItem>
+                        {/* <SelectItem value="heif">HEIF</SelectItem> */}
+                        {/* <SelectItem value="jxl">JXL</SelectItem> */}
+                        <SelectItem value="raw">RAW</SelectItem>
+                        {/* <SelectItem value="tile">TILE</SelectItem> */}
                     </SelectContent>
                 </Select>
             </FormItem>
 
             <FormItem label="Image quality:">
-                <Select name="quality">
+                <Select name="quality" defaultValue="0.8">
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder="Change Quality" />
                     </SelectTrigger>
