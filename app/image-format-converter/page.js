@@ -1,15 +1,15 @@
 import PageWrapper from "../components/page-wrapper";
-import ImageConverterMain from "./image-converter-main";
+import Main from "./main";
 
 export const metadata = {
     title: "Image Format Converter - Free Online Tool",
     description: "Quickly convert images to PNG, JPEG, WEBP and more.",
 };
 
-export default function ImageConverterPage() {
+export default function Page() {
     return (
         <PageWrapper title="Image Format Converter">
-            <ImageConverterMain />
+            <Main />
         </PageWrapper>
     );
 }

@@ -1,0 +1,83 @@
+"use client";
+
+import { useState } from "react";
+import Form from "./form";
+import { Button } from "@/components/ui/button";
+
+export default function Main() {
+    const [imgURL, setImgURL] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [downloadName, setDownloadName] = useState(null);
+
+    const handleSubmit = async (e) => {
+        setLoading(true);
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const image = formData.get("image");
+        const format = formData.get("format");
+        const quality = formData.get("quality");
+        const scale = formData.get("scale");
+
+        // get download name
+        const imageName = image.name;
+        const imageNameWithoutExtension = imageName.split(".")[0];
+        setDownloadName(`${imageNameWithoutExtension}.${format}`);
+
+        const response = await fetch("/api/image/convert", {
+            method: "POST",
+            headers: {
+                format: format,
+                quality: quality,
+                scale: scale,
+            },
+            body: image,
+        });
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setImgURL(url);
+        setLoading(false);
+    };
+
+    return (
+        <main className="w-full max-w-xl flex flex-col gap-20 px-4">
+            <Form handleSubmit={handleSubmit} loading={loading} />
+
+            {/* show image url and download button */}
+            <div className="flex flex-col gap-1">
+                <p className="text-left">Conversion Results:</p>
+                <div className="h-1 bg-border" />
+                {imgURL && (
+                    <div className="flex-between gap-4 mt-2">
+                        <Button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = imgURL;
+                                link.target = "_blank";
+                                link.rel = "noopener noreferrer";
+                                link.click();
+                            }}
+                            className="w-32"
+                            variant="link"
+                        >
+                            👉 Preview
+                        </Button>
+
+                        <Button
+                            onClick={() => {
+                                const link = document.createElement("a");
+                                link.href = imgURL;
+                                link.download = downloadName;
+                                link.click();
+                            }}
+                            className="w-32"
+                            variant="link"
+                        >
+                            ⬇️ Download
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </main>
+    );
+}
