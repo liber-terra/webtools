@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Form from "./form";
 import { Button } from "@/components/ui/button";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Main() {
     const [imgURL, setImgURL] = useState(null);
@@ -11,10 +12,16 @@ export default function Main() {
 
     const handleSubmit = async (e) => {
         setLoading(true);
+        setImgURL(null);
         e.preventDefault();
 
         const formData = new FormData(e.target);
         const image = formData.get("image");
+        if (!(image instanceof File) || !image.name || image.size === 0) {
+            toast.error("Please upload an image");
+            setLoading(false);
+            return;
+        }
         const format = formData.get("format");
         const quality = formData.get("quality");
         const scale = formData.get("scale");
@@ -33,14 +40,23 @@ export default function Main() {
             },
             body: image,
         });
+        if (!response.ok) {
+            toast.error("Failed to convert image");
+            setLoading(false);
+            return;
+        }
+        
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
+
         setImgURL(url);
         setLoading(false);
     };
 
     return (
         <main className="w-full max-w-xl flex flex-col gap-20 px-4">
+            <Toaster position="top-center" />
+
             <Form handleSubmit={handleSubmit} loading={loading} />
 
             {/* show image url and download button */}

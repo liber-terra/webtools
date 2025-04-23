@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 
 const FormItem = ({ label, children }) => (
-    <div className="w-full flex gap-4">
+    <div className="w-full flex-center gap-4">
         <span className="w-1/3 min-w-[100px]">{label}</span>
         <div className="w-2/3">{children}</div>
     </div>
@@ -76,16 +76,29 @@ export default function Form({ handleSubmit, loading }) {
                         <SelectValue placeholder="Select a scale" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="1">1x</SelectItem>
-                        <SelectItem value="0.5">0.5x</SelectItem>
-                        <SelectItem value="0.3">0.3x</SelectItem>
-                        <SelectItem value="0.2">0.2x</SelectItem>
-                        <SelectItem value="0.1">0.1x</SelectItem>
+                        <SelectItem value="1">Original Size</SelectItem>
+                        <SelectItem value="0.5">
+                            50% of Original Size
+                        </SelectItem>
+                        <SelectItem value="0.3">
+                            30% of Original Size
+                        </SelectItem>
+                        <SelectItem value="0.2">
+                            20% of Original Size
+                        </SelectItem>
+                        <SelectItem value="0.1">
+                            10% of Original Size
+                        </SelectItem>
                     </SelectContent>
                 </Select>
             </FormItem>
 
-            <Button type="submit" className="w-32" variant="outline">
+            <Button
+                type="submit"
+                className="w-32"
+                variant="outline"
+                disabled={loading}
+            >
                 {loading ? (
                     <div className="flex items-center gap-2">
                         <LoaderCircle className="w-4 h-4 animate-spin" />
