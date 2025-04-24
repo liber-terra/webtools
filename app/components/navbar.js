@@ -1,6 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "./ui/theme-toggle";
+import { Button } from "@/components/ui/button";
+
+const NavItem = ({ href, title }) => (
+    <Button
+        asChild
+        variant="ghost"
+        className="w-12 lg:w-24 text-sm text-sidebar-foreground"
+    >
+        <Link href={href}>{title}</Link>
+    </Button>
+);
 
 export default function Navbar() {
     return (
@@ -24,7 +35,15 @@ export default function Navbar() {
                         <span className="hidden sm:inline">Tools Hub</span>
                     </Link>
                 </div>
-                {/* TODO: Menu */}
+
+                {/* menu */}
+                <div className="flex-1 px-4 sm:px-8 lg:px-12 flex-start gap-2">
+                    <NavItem href="/" title="Home" />
+                    <NavItem href="/image-format-converter" title="Image" />
+                    <NavItem href="/image-host" title="Image Host" />
+                    <NavItem href="/file-sharing" title="File Sharing" />
+                </div>
+
                 {/* Right side */}
                 <div className="flex gap-2">
                     {/* TODO: Language Toggle */}

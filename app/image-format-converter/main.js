@@ -45,7 +45,7 @@ export default function Main() {
             setLoading(false);
             return;
         }
-        
+
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
 
@@ -54,7 +54,7 @@ export default function Main() {
     };
 
     return (
-        <main className="w-full max-w-xl flex flex-col gap-20 px-4">
+        <main className="container mx-auto max-w-2xl px-4 flex flex-col gap-20">
             <Toaster position="top-center" />
 
             <Form handleSubmit={handleSubmit} loading={loading} />
