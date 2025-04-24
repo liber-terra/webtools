@@ -226,6 +226,10 @@
     @apply flex items-center justify-around;
 }
 
+@utility flex-start {
+    @apply flex items-center justify-start;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
