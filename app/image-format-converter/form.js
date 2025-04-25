@@ -95,7 +95,7 @@ export default function Form({ handleSubmit, loading }) {
 
             <Button
                 type="submit"
-                className="w-32"
+                className="w-32 active:scale-95"
                 variant="outline"
                 disabled={loading}
             >

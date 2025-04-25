@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Form from "./form";
 import { Button } from "@/components/ui/button";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 export default function Main() {
     const [imgURL, setImgURL] = useState(null);
@@ -55,14 +55,12 @@ export default function Main() {
 
     return (
         <main className="container mx-auto max-w-2xl px-4 flex flex-col gap-20">
-            <Toaster position="top-center" />
-
             <Form handleSubmit={handleSubmit} loading={loading} />
 
             {/* show image url and download button */}
             <div className="flex flex-col gap-1">
                 <p className="text-left">Conversion Results:</p>
-                <div className="h-1 bg-border" />
+                <div className="h-px bg-muted" />
                 {imgURL && (
                     <div className="flex-between gap-4 mt-2">
                         <Button

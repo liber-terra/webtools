@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Navbar from "./components/navbar";
-
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
 
                     <div className="flex-1">{children}</div>
                 </ThemeProvider>
+                <Toaster />
             </body>
         </html>
     );
