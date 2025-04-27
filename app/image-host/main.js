@@ -4,15 +4,44 @@ import UploadButton from "@/app/components/ui/upload-button";
 import { UploadCloud } from "lucide-react";
 import EmbedCode from "@/app/components/ui/embed-code";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function Main() {
     const PLACEHOLDER = "https://example.com/example.jpg";
+    const MAX_SIZE = 4.5 * 1024 * 1024; // 4.5 MB
+
     const [imgUrl, setImgUrl] = useState(PLACEHOLDER);
 
-    const handleSubmit = (file) => {
-        console.log(file.target.files[0]);
-        console.log(file.target.files[0].name);
-        setImgUrl("https://example.com/xxxx.jpg");
+    const handleSubmit = async (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            toast.error("No file selected");
+            return;
+        }
+
+        console.log("==========", file.type);
+        if (!file.type.startsWith("image/")) {
+            toast.error("Only image files are allowed");
+            return;
+        }
+
+        if (file.size > MAX_SIZE) {
+            toast.error("Image size must be less than 4.5 MB");
+            return;
+        }
+
+        const res = await fetch(`/api/blob?filename=${file.name}`, {
+            method: "POST",
+            body: file,
+        });
+
+        if (!res.ok) {
+            toast.error("Server error");
+            return;
+        }
+
+        const data = await res.json();
+        setImgUrl(data.url);
     };
 
     return (
