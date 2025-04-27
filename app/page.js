@@ -18,6 +18,6 @@ export default function Home() {
         //         ))}
         //     </main>
         // </PageWrapper>
-        redirect("/image-format-converter")
+        redirect("/file-sharing")
     );
 }

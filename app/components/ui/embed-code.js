@@ -17,7 +17,7 @@ const templates = {
 
 export default function EmbedCode({ imgUrl, className }) {
     /* ① Tab 状态 */
-    const [fmt, setFmt] = useState("markdown");
+    const [fmt, setFmt] = useState("url");
 
     /* ② 生成代码；依赖变才重算 */
     const code = templates[fmt](imgUrl);

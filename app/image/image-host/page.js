@@ -1,4 +1,4 @@
-import PageWrapper from "../components/page-wrapper";
+import PageWrapper from "@/app/components/page-wrapper";
 import Main from "./main";
 
 export const metadata = {

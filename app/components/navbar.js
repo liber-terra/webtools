@@ -7,7 +7,7 @@ const NavItem = ({ href, title }) => (
     <Button
         asChild
         variant="ghost"
-        className="w-12 lg:w-24 text-sm text-sidebar-foreground"
+        className="w-12 sm:w-32 text-sm text-sidebar-foreground"
     >
         <Link href={href}>{title}</Link>
     </Button>
@@ -37,15 +37,14 @@ export default function Navbar() {
                 </div>
 
                 {/* menu */}
-                <div className="flex-1 px-4 sm:px-8 lg:px-12 flex-start gap-2">
+                <div className="flex-1 px-4 sm:px-8 lg:px-12">
                     <NavItem href="/" title="Home" />
-                    <NavItem href="/image-format-converter" title="Image" />
-                    <NavItem href="/image-host" title="Image Host" />
+                    <NavItem href="/image" title="Image" />
                     <NavItem href="/file-sharing" title="File Sharing" />
                 </div>
 
                 {/* Right side */}
-                <div className="flex gap-2">
+                <div className="shrink-0 flex gap-2">
                     {/* TODO: Language Toggle */}
                     <ThemeToggle />
                 </div>
