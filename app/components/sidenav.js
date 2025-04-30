@@ -1,30 +1,43 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ImageIcon, RefreshCcwIcon } from "lucide-react";
 
-const links = [
-    { href: "/image/format-converter", label: "Format Converter" },
-    { href: "/image/image-host", label: "Image Hosting" },
+const SIDE_NAV_LINKS = [
+    {
+        href: "/image/format-converter",
+        label: "Format Converter",
+        icon: RefreshCcwIcon,
+    },
+    { href: "/image/image-host", label: "Image Hosting", icon: ImageIcon },
 ];
 
-export default function SideNav() {
+function SideNavLink({ href, label, icon: Icon }) {
     const pathname = usePathname();
+    const active = pathname.startsWith(href);
     return (
-        <nav className="flex flex-col gap-1">
-            {links.map(({ href, label }) => (
-                <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                        "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                        pathname.startsWith(href)
-                            ? "bg-accent text-accent-foreground"
-                            : "hover:bg-muted"
-                    )}
-                >
-                    {label}
-                </Link>
+        <Link
+            href={href}
+            className={cn(
+                "px-3 py-2 text-sm flex items-center gap-2",
+                active
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground hover:text-primary"
+            )}
+        >
+            <Icon className="h-4 w-4 shrink-0" />
+            <span className="truncate">{label}</span>
+        </Link>
+    );
+}
+
+export default function SideNav() {
+    return (
+        <nav className="flex flex-col gap-2 mt-8">
+            {SIDE_NAV_LINKS.map((props) => (
+                <SideNavLink key={props.href} {...props} />
             ))}
         </nav>
     );

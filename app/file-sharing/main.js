@@ -45,7 +45,7 @@ export default function Main() {
     };
 
     return (
-        <main className="container mx-auto max-w-2xl py-12 px-4">
+        <main className="container max-w-2xl mx-auto py-12 px-4">
             <div className="flex flex-col gap-12">
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">

@@ -45,7 +45,7 @@ export default function Main() {
     };
 
     return (
-        <main className="container mx-auto max-w-2xl py-12 px-4">
+        <main className="container max-w-2xl mx-auto py-12 px-4">
             <div className="flex flex-col gap-12">
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">
@@ -71,21 +71,6 @@ export default function Main() {
                 </Card>
 
                 <div className="h-px bg-muted" />
-
-                <Card className="p-4 bg-transparent border-none shadow-none">
-                    <CardHeader className="mb-4 p-0">
-                        <h2 className="text-lg sm:text-xl font-semibold">
-                            Embed Code
-                        </h2>
-                        <p className="text-sm text-muted-foreground">
-                            Copy and paste the following code into your website
-                            or blog post
-                        </p>
-                    </CardHeader>
-                    <CardContent>
-                        <EmbedCode imgUrl={imgUrl} />
-                    </CardContent>
-                </Card>
 
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">

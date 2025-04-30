@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function Image() {
-    return redirect("/image/format-converter");
+    return redirect("/image/image-host");
 }

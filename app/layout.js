@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             </head>
 
             <body
-                className={`${inter.className} antialiased min-h-screen flex flex-col`}
+                className={`${inter.className} antialiased h-screen flex flex-col`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -30,11 +30,10 @@ export default function RootLayout({ children }) {
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <div className="h-14">
-                        <Navbar />
+                    <Navbar className="h-16 fixed inset-x-0 top-0 z-50" />
+                    <div className="flex-1 pt-16 w-full max-w-screen-xl mx-auto overflow-hidden">
+                        {children}
                     </div>
-
-                    <div className="flex-1">{children}</div>
                 </ThemeProvider>
                 <Toaster />
             </body>
