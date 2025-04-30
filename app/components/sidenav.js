@@ -11,7 +11,7 @@ const SIDE_NAV_LINKS = [
         label: "Format Converter",
         icon: RefreshCcwIcon,
     },
-    { href: "/image/image-host", label: "Image Hosting", icon: ImageIcon },
+    { href: "/image/image-host", label: "Image Host", icon: ImageIcon },
 ];
 
 function SideNavLink({ href, label, icon: Icon }) {

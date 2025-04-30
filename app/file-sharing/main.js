@@ -19,14 +19,8 @@ export default function Main() {
             return;
         }
 
-        console.log("==========", file.type);
-        if (!file.type.startsWith("image/")) {
-            toast.error("Only image files are allowed");
-            return;
-        }
-
         if (file.size > MAX_SIZE) {
-            toast.error("Image size must be less than 4.5 MB");
+            toast.error("File size must be less than 4.5 MB");
             return;
         }
 
@@ -50,18 +44,19 @@ export default function Main() {
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">
                         <h2 className="text-lg sm:text-xl font-semibold">
-                            Upload an Image
+                            Upload Files
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                            Choose a file or drag it onto the button below
+                            Choose your files or drag it onto the button below
                         </p>
                     </CardHeader>
 
                     <CardContent>
                         <UploadButton
                             className="w-full gap-4"
-                            accept="image/*"
+                            accept="*"
                             size="lg"
+                            variant="outline"
                             onChange={handleSubmit}
                         >
                             <UploadCloud className="h-5 w-5" />
