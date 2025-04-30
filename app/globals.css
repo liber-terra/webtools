@@ -231,18 +231,29 @@
 }
 
 @keyframes gradient {
-    0% {
+    0%,
+    100% {
         background-position: 0% 50%;
     }
     50% {
         background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
     }
 }
 
 @utility animate-gradient {
     background-size: 200% 200%;
     animation: gradient 6s ease infinite;
+}
+
+@utility scrollbar-hide {
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* IE and Edge Legacy */
+    -ms-overflow-style: none;
+
+    /* Webkit (Chrome, Safari, newer Edge, Opera) */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
