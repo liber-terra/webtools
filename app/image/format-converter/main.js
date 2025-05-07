@@ -54,7 +54,7 @@ export default function Main() {
     };
 
     return (
-        <main className="container max-w-2xl mx-auto px-4 flex flex-col gap-20">
+        <main className="container max-w-2xl mx-auto py-12 px-4 flex flex-col gap-12">
             <Form handleSubmit={handleSubmit} loading={loading} />
 
             {/* show image url and download button */}
