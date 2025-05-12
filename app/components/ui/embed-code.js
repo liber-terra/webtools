@@ -42,7 +42,7 @@ export default function EmbedCode({ imgUrl, className }) {
                         <TabsTrigger
                             value="url"
                             className={
-                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground"
+                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             }
                         >
                             URL
@@ -50,7 +50,7 @@ export default function EmbedCode({ imgUrl, className }) {
                         <TabsTrigger
                             value="markdown"
                             className={
-                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground"
+                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             }
                         >
                             Markdown
@@ -58,7 +58,7 @@ export default function EmbedCode({ imgUrl, className }) {
                         <TabsTrigger
                             value="markdownLink"
                             className={
-                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground"
+                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             }
                         >
                             MD+Link
@@ -66,7 +66,7 @@ export default function EmbedCode({ imgUrl, className }) {
                         <TabsTrigger
                             value="html"
                             className={
-                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground"
+                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             }
                         >
                             HTML
@@ -74,7 +74,7 @@ export default function EmbedCode({ imgUrl, className }) {
                         <TabsTrigger
                             value="bbcode"
                             className={
-                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground"
+                                "border-none text-xs text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             }
                         >
                             BBCode
