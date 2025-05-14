@@ -1,16 +1,32 @@
 import { put, del, head, list } from "@vercel/blob";
 import { NextResponse } from "next/server";
+import { insertTable } from "@/app/lib/image-host";
 
 // https://vercel.com/docs/vercel-blob/using-blob-sdk#put
 export async function POST(request) {
-    const { searchParams } = new URL(request.url);
-    const filename = searchParams.get("filename") || "_";
+    try {
+        const { searchParams } = new URL(request.url);
+        const filename = searchParams.get("filename") || "_";
+        const arrayBuffer = await request.arrayBuffer();
 
-    const blob = await put(filename, request.body, {
-        access: "public",
-        addRandomSuffix: true,
-    });
-    return NextResponse.json(blob);
+        const blob = await put(filename, arrayBuffer, {
+            access: "public",
+            addRandomSuffix: true,
+        });
+
+        const data = {
+            file_name: filename,
+            file_url: blob.url,
+            file_size_bytes: arrayBuffer.byteLength,
+        };
+        await insertTable(data);
+        return NextResponse.json(blob);
+    } catch (error) {
+        console.error("Error hosting image:", error);
+        return new NextResponse("Error hosting image", {
+            status: 500,
+        });
+    }
 }
 
 // export async function DELETE(request) {

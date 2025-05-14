@@ -1,29 +1,28 @@
-import { convertImg } from "@/app/lib/image-converter";
+import { convertImg, insertTable } from "@/app/lib/image-converter";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
         const imageArray = await request.arrayBuffer();
         if (!imageArray || imageArray.byteLength === 0) {
-            return NextResponse.json(
-                { error: "No image provided" },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: "No image provided" }, { status: 400 });
         }
 
         const format = request.headers.get("format");
         const qualityRaw = request.headers.get("quality");
         const scaleRaw = request.headers.get("scale");
-
         const quality = parseFloat(qualityRaw) * 100;
         const scale = parseFloat(scaleRaw);
 
-        const imageBuffer = await convertImg(
-            imageArray,
-            format,
-            quality,
-            scale
-        );
+        const imageBuffer = await convertImg(imageArray, format, quality, scale);
+
+        const data = {
+            file_name: request.headers.get("file_name"),
+            target_format: format,
+            original_size_bytes: imageArray.byteLength,
+            converted_size_bytes: imageBuffer.length,
+        };
+        await insertTable(data);
 
         return new NextResponse(imageBuffer, {
             status: 200,

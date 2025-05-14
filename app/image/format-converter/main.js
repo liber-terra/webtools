@@ -22,14 +22,15 @@ export default function Main() {
             setLoading(false);
             return;
         }
+
         const format = formData.get("format");
         const quality = formData.get("quality");
         const scale = formData.get("scale");
 
         // get download name
-        const imageName = image.name;
-        const imageNameWithoutExtension = imageName.split(".")[0];
-        setDownloadName(`${imageNameWithoutExtension}.${format}`);
+        const uploadFileName = image.name;
+        const downloadFileName = `${uploadFileName.split(".")[0]}.${format}`;
+        setDownloadName(downloadFileName);
 
         const response = await fetch("/api/image/convert", {
             method: "POST",
@@ -37,9 +38,11 @@ export default function Main() {
                 format: format,
                 quality: quality,
                 scale: scale,
+                file_name: uploadFileName,
             },
             body: image,
         });
+
         if (!response.ok) {
             toast.error("Failed to convert image");
             setLoading(false);
@@ -48,7 +51,6 @@ export default function Main() {
 
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
-
         setImgURL(url);
         setLoading(false);
     };
