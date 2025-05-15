@@ -1,5 +1,7 @@
 import PageWrapper from "@/app/components/page-wrapper";
 import Main from "./main";
+import { getStats } from "@/app/lib/file-sharing";
+import { formatFileSize } from "@/app/lib/utils";
 
 export const metadata = {
     title: "Upload and Share Your Files Across Devices for Free",
@@ -7,8 +9,37 @@ export const metadata = {
 };
 
 export default async function Page() {
+    const title = metadata.title;
+    const description = metadata.description;
+    const qa = [
+        {
+            question: "What is the maximum file size for files?",
+            answer: "The maximum file size for files is currently 4MB.",
+        },
+        {
+            question: "How long will my files be stored?",
+            answer: "Your files will be stored indefinitely. However, please note that we reserve the right to remove any files that violate our terms of service.",
+        },
+        {
+            question: "How can I delete my files?",
+            answer: "We currently do not support deleting files. However, you can contact us to delete your files.",
+        },
+    ];
+
+    const _stats = await getStats();
+    const stats = [
+        {
+            label: "files shared online",
+            value: _stats.shared_count,
+        },
+        {
+            label: "file size shared",
+            value: formatFileSize(_stats.shared_size_bytes),
+        },
+    ];
+
     return (
-        <PageWrapper title="Upload and Share Your Files Across Devices">
+        <PageWrapper title={title} description={description} stats={stats} qa={qa}>
             <Main />
         </PageWrapper>
     );

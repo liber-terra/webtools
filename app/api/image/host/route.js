@@ -1,6 +1,6 @@
 import { put, del, head, list } from "@vercel/blob";
 import { NextResponse } from "next/server";
-import { insertTable } from "@/app/lib/image-host";
+import { insertTable } from "@/app/lib/image/host";
 
 // https://vercel.com/docs/vercel-blob/using-blob-sdk#put
 export async function POST(request) {

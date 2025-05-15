@@ -7,11 +7,11 @@ import { ImageIcon, RefreshCcwIcon } from "lucide-react";
 
 const SIDE_NAV_LINKS = [
     {
-        href: "/image/format-converter",
+        href: "/image/convert",
         label: "Format Converter",
         icon: RefreshCcwIcon,
     },
-    { href: "/image/image-host", label: "Image Host", icon: ImageIcon },
+    { href: "/image/host", label: "Image Host", icon: ImageIcon },
 ];
 
 function SideNavLink({ href, label, icon: Icon }) {
@@ -22,9 +22,7 @@ function SideNavLink({ href, label, icon: Icon }) {
             href={href}
             className={cn(
                 "px-3 py-2 text-sm flex items-center gap-2",
-                active
-                    ? "text-primary font-semibold"
-                    : "text-muted-foreground hover:text-primary"
+                active ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
             )}
         >
             <Icon className="h-4 w-4 shrink-0" />

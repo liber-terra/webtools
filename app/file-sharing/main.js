@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import UploadButton from "@/app/components/ui/upload-button";
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, LoaderCircle } from "lucide-react";
 import EmbedCode from "@/app/components/ui/embed-code";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -10,9 +10,11 @@ export default function Main() {
     const PLACEHOLDER = "https://example.com/example.jpg";
     const MAX_SIZE = 4.5 * 1024 * 1024; // 4.5 MB
 
+    const [uploading, setUploading] = useState(false);
     const [imgUrl, setImgUrl] = useState(PLACEHOLDER);
 
     const handleSubmit = async (e) => {
+        setUploading(true);
         const file = e.target.files[0];
         if (!file) {
             toast.error("No file selected");

@@ -1,6 +1,6 @@
 import PageWrapper from "@/app/components/page-wrapper";
 import Main from "./main";
-import { getStats } from "@/app/lib/image-converter";
+import { getStats } from "@/app/lib/image/convert";
 import { formatFileSize } from "@/app/lib/utils";
 
 export const metadata = {
