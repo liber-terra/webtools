@@ -1,7 +1,6 @@
-import PageWrapper from "@/app/components/page-wrapper";
+import PageWrapper from "@/components/page-wrapper";
 import Main from "./main";
-import { getStats } from "@/app/lib/image/convert";
-import { formatFileSize } from "@/app/lib/utils";
+import { getStats } from "@/app/image/convert/lib";
 
 export const metadata = {
     title: "Image Format Converter",
@@ -34,19 +33,8 @@ export default async function Page() {
         },
     ];
 
-    const _stats = await getStats();
-    const stats = [
-        {
-            label: "images converted online",
-            value: _stats.converted_count,
-        },
-        {
-            label: "image size converted",
-            value: formatFileSize(_stats.converted_size_bytes),
-        },
-    ];
     return (
-        <PageWrapper title={title} description={description} qa={qa} stats={stats}>
+        <PageWrapper title={title} description={description} qa={qa} getStats={getStats}>
             <Main />
         </PageWrapper>
     );

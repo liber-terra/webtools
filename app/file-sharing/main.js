@@ -1,8 +1,8 @@
 "use client";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import UploadButton from "@/app/components/ui/upload-button";
+import UploadButton from "@/components/ui/upload-button";
 import { UploadCloud, LoaderCircle } from "lucide-react";
-import EmbedCode from "@/app/components/ui/embed-code";
+import EmbedCode from "@/components/ui/embed-code";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 

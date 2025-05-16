@@ -1,8 +1,8 @@
 "use client";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import UploadButton from "@/app/components/ui/upload-button";
+import UploadButton from "@/components/ui/upload-button";
 import { UploadCloud, LoaderCircle } from "lucide-react";
-import EmbedCode from "@/app/components/ui/embed-code";
+import EmbedCode from "@/components/ui/embed-code";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -55,7 +55,7 @@ export default function Main() {
             <div className="flex flex-col gap-12">
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">
-                        <h2 className="text-lg sm:text-xl font-semibold">Upload an Image</h2>
+                        <h2 className="text-lg font-semibold">Upload an Image</h2>
                         <p className="text-sm text-muted-foreground">Choose a file or drag it onto the button below</p>
                     </CardHeader>
 
@@ -80,7 +80,7 @@ export default function Main() {
 
                 <Card className="p-4 bg-transparent border-none shadow-none">
                     <CardHeader className="mb-4 p-0">
-                        <h2 className="text-lg sm:text-xl font-semibold">Embed Code</h2>
+                        <h2 className="text-lg font-semibold">Embed Code</h2>
                         <p className="text-sm text-muted-foreground">
                             Copy and paste the following code into your website or blog post
                         </p>

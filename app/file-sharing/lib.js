@@ -1,4 +1,5 @@
 import postgres from "postgres";
+import { formatFileSize } from "@/lib/utils";
 
 const sql = postgres(process.env.POSTGRES_URL);
 /*
@@ -28,8 +29,14 @@ export async function insertTable(data) {
 export async function getStats() {
     const hosted_count = await sql`SELECT COUNT(*) FROM image_host`;
     const hosted_size_bytes = await sql`SELECT SUM(file_size_bytes) FROM image_host`;
-    return {
-        hosted_count: hosted_count[0].count,
-        hosted_size_bytes: hosted_size_bytes[0].sum,
-    };
+    return [
+        {
+            label: "files shared online",
+            value: hosted_count[0].count,
+        },
+        {
+            label: "file size shared",
+            value: formatFileSize(hosted_size_bytes[0].sum),
+        },
+    ];
 }

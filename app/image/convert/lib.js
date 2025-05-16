@@ -2,6 +2,7 @@
 
 import sharp from "sharp";
 import postgres from "postgres";
+import { formatFileSize } from "@/lib/utils";
 
 export async function convertImg(imageArray, format, quality, scale) {
     const metadata = await sharp(imageArray).metadata();
@@ -42,10 +43,16 @@ export async function insertTable(data) {
 }
 
 export async function getStats() {
-    const converted_count = await sql`SELECT COUNT(*) FROM image_converter`;
-    const converted_size_bytes = await sql`SELECT SUM(converted_size_bytes) FROM image_converter`;
-    return {
-        converted_count: converted_count[0].count,
-        converted_size_bytes: converted_size_bytes[0].sum,
-    };
+    const sql_count = await sql`SELECT COUNT(*) FROM image_converter`;
+    const sql_size = await sql`SELECT SUM(converted_size_bytes) FROM image_converter`;
+    return [
+        {
+            label: "images converted online",
+            value: sql_count[0].count,
+        },
+        {
+            label: "image size converted",
+            value: formatFileSize(sql_size[0].sum),
+        },
+    ];
 }

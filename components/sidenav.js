@@ -21,7 +21,7 @@ function SideNavLink({ href, label, icon: Icon }) {
         <Link
             href={href}
             className={cn(
-                "px-3 py-2 text-sm flex items-center gap-2",
+                "px-3 py-2 text-sm font-medium flex items-center gap-2",
                 active ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
             )}
         >

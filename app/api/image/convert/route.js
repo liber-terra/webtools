@@ -1,4 +1,4 @@
-import { convertImg, insertTable } from "@/app/lib/image/convert";
+import { convertImg, insertTable } from "@/app/image/convert/lib";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {

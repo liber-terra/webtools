@@ -1,7 +1,6 @@
-import PageWrapper from "@/app/components/page-wrapper";
+import PageWrapper from "@/components/page-wrapper";
+import { getStats } from "@/app/image/host/lib";
 import Main from "./main";
-import { getStats } from "@/app/lib/image/host";
-import { formatFileSize } from "@/app/lib/utils";
 
 export const metadata = {
     title: "Upload and Host Your Images for Free",
@@ -26,19 +25,8 @@ export default async function Page() {
         },
     ];
 
-    const _stats = await getStats();
-    const stats = [
-        {
-            label: "images hosted online",
-            value: _stats.hosted_count,
-        },
-        {
-            label: "image size hosted",
-            value: formatFileSize(_stats.hosted_size_bytes),
-        },
-    ];
     return (
-        <PageWrapper title={title} description={description} stats={stats} qa={qa}>
+        <PageWrapper title={title} description={description} getStats={getStats} qa={qa}>
             <Main />
         </PageWrapper>
     );

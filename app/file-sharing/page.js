@@ -1,7 +1,7 @@
-import PageWrapper from "@/app/components/page-wrapper";
+import PageWrapper from "@/components/page-wrapper";
 import Main from "./main";
-import { getStats } from "@/app/lib/file-sharing";
-import { formatFileSize } from "@/app/lib/utils";
+import { getStats } from "@/app/file-sharing/lib";
+import { formatFileSize } from "@/lib/utils";
 
 export const metadata = {
     title: "Upload and Share Your Files Across Devices for Free",
@@ -26,20 +26,8 @@ export default async function Page() {
         },
     ];
 
-    const _stats = await getStats();
-    const stats = [
-        {
-            label: "files shared online",
-            value: _stats.shared_count,
-        },
-        {
-            label: "file size shared",
-            value: formatFileSize(_stats.shared_size_bytes),
-        },
-    ];
-
     return (
-        <PageWrapper title={title} description={description} stats={stats} qa={qa}>
+        <PageWrapper title={title} description={description} getStats={getStats} qa={qa}>
             <Main />
         </PageWrapper>
     );
