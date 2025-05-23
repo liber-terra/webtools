@@ -13,7 +13,7 @@ export default function Main() {
     const [uploading, setUploading] = useState(false);
     const [imgUrl, setImgUrl] = useState(PLACEHOLDER);
 
-    const handleSubmit = async (e) => {
+    const handleUpload = async (e) => {
         setUploading(true);
         const file = e.target.files[0];
         if (!file) {
@@ -60,7 +60,12 @@ export default function Main() {
                     </CardHeader>
 
                     <CardContent>
-                        <UploadButton className="w-full gap-4" accept="image/*" size="lg" onChange={handleSubmit}>
+                        <UploadButton
+                            className="w-full h-24 gap-4"
+                            variant="outline"
+                            accept="image/*"
+                            onChange={handleUpload}
+                        >
                             {uploading ? (
                                 <>
                                     <LoaderCircle className="h-5 w-5 animate-spin" />

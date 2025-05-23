@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/page-wrapper";
 import Main from "./main";
-import { getStats } from "@/app/image/convert/lib";
+import { getStats } from "@/app/image/converter/lib";
 
 export const metadata = {
     title: "Image Format Converter",

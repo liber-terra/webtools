@@ -1,7 +1,6 @@
 import PageWrapper from "@/components/page-wrapper";
 import Main from "./main";
 import { getStats } from "@/app/file-sharing/lib";
-import { formatFileSize } from "@/lib/utils";
 
 export const metadata = {
     title: "Upload and Share Your Files Across Devices for Free",
